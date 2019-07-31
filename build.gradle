@@ -1,0 +1,47 @@
+buildscript {
+    ext {
+    }
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    configurations.maybeCreate("pitest")
+    dependencies {
+        classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.4.0'
+        pitest 'org.pitest:pitest-junit5-plugin:0.9'
+    }
+}
+
+plugins {
+    id 'java'
+}
+
+apply plugin: 'info.solidsoft.pitest'
+
+group 'com.radbrackets'
+version '1.0.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile(
+            'org.junit.jupiter:junit-jupiter:5.4.0',
+            "org.junit.jupiter:junit-jupiter-api:5.4.0",
+            "org.junit.jupiter:junit-jupiter-params:5.4.0",
+            'org.assertj:assertj-core:3.12.2'
+    )
+}
+
+pitest {
+    pitestVersion = "1.4.9"
+    testPlugin = "junit5"
+    threads = 4
+    verbose true
+    targetClasses = ['com.radbrackets.*']
+    build.dependsOn 'pitest'
+    outputFormats = ['XML', 'HTML']
+}
