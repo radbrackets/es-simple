@@ -7,11 +7,11 @@ import java.util.*;
 public class PersistentEvent {
 
     private final UUID uuid;
-    private final Event event;
+    private final Event<?> event;
     private final Long version;
     private final Map<String, String> metadata;
 
-    public PersistentEvent(UUID uuid, Event event, Long version, Map<String, String> metadata) {
+    public PersistentEvent(UUID uuid, Event<?> event, Long version, Map<String, String> metadata) {
         this.uuid = uuid;
         this.event = event;
         this.version = version;
@@ -22,7 +22,7 @@ public class PersistentEvent {
         return uuid;
     }
 
-    public Event getEvent() {
+    public Event<?> getEvent() {
         return event;
     }
 

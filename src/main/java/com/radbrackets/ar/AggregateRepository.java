@@ -36,7 +36,7 @@ public class AggregateRepository<ID, AGGREGATE extends AggregateRoot<ID>> {
         );
     }
 
-    private EventInformation toEventInformation(Event event) {
+    private EventInformation toEventInformation(Event<?> event) {
         return new EventInformation(UUID.randomUUID(), event, unitOfWork.current().metadata());
     }
 }
