@@ -44,4 +44,5 @@ pitest {
     targetClasses = ['com.radbrackets.*']
     build.dependsOn 'pitest'
     outputFormats = ['XML', 'HTML']
+    mutators = ['ALL']
 }
